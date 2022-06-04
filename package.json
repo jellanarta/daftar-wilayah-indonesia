@@ -1,0 +1,33 @@
+{
+  "name": "daftar-wilayah-indonesia",
+  "version": "4.0.1",
+   "description": "kumpulan daftar wilayah indoneisa. Gunakan package ini untuk menampilkan seluruh daftar wilayah yang ada di indonesia dengan mudah",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jellanarta/daftar-wilayah-indonesia.git"
+  },
+  "keywords": [
+    "daftar",
+    "wilayah",
+    "indonesia",
+    "wilayah",
+    "indonesia",
+    "npm",
+    "wilayah",
+    "indonesia",
+    "provinsi",
+    "kabupaten",
+    "kecamatan",
+    "desa"
+  ],
+  "author": "Jellan Arta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jellanarta/daftar-wilayah-indonesia/issues"
+  },
+  "homepage": "https://github.com/jellanarta/daftar-wilayah-indonesia#readme"
+}
