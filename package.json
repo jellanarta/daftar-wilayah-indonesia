@@ -1,6 +1,6 @@
 {
   "name": "daftar-wilayah-indonesia",
-  "version": "4.0.1",
+  "version": "4.0.3",
    "description": "kumpulan daftar wilayah indoneisa. Gunakan package ini untuk menampilkan seluruh daftar wilayah yang ada di indonesia dengan mudah",
   "main": "index.js",
   "scripts": {
