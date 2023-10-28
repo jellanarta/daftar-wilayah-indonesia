@@ -46,5 +46,4 @@ const provinsi = () => { return ut('', [], '', false) }
 const kabupaten = (kode = '') => { return (ut(kode, kabupatendata, 'kode_provinsi')) }
 const kecamatan = (kode = '') => { return (ut(kode, kecamatandata, 'kode_kabupaten')) }
 const desa = (kode = '') => { return (ut(kode, desadata, 'kode_kecamatan')) }
-console.log(desa('5202070'));
 module.exports = { provinsi, kabupaten, kecamatan, desa }
