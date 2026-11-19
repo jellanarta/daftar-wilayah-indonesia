@@ -1,6 +1,6 @@
 {
   "name": "daftar-wilayah-indonesia",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Daftar wilayah administratif Indonesia terlengkap dan terkini (38 Provinsi, 514 Kabupaten/Kota, 7.265+ Kecamatan, 83.345+ Desa/Kelurahan) dengan dukungan penuh TypeScript, CJS & ESM.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
