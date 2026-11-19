@@ -1,9 +1,13 @@
 # daftar-wilayah-indonesia
 
 [![npm version](https://img.shields.io/npm/v/daftar-wilayah-indonesia.svg?style=flat-square)](https://www.npmjs.com/package/daftar-wilayah-indonesia)
+[![Live Demo & Docs](https://img.shields.io/badge/Live%20Demo%20%26%20Docs-wilayahindonesia.vercel.app-0070F3?style=flat-square&logo=vercel&logoColor=white)](https://wilayahindonesia.vercel.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-success?style=flat-square)](https://www.npmjs.com/package/daftar-wilayah-indonesia)
+
+> 🌐 **Website Demo & Dokumentasi Lengkap**: **[https://wilayahindonesia.vercel.app/](https://wilayahindonesia.vercel.app/)**  
+> Coba langsung *interactive cascading dropdown*, pencarian instan wilayah, *hierarchy inspector*, serta panduan kode step-by-step modular per fungsi.
 
 Library data wilayah administratif Indonesia terlengkap, terkini, dan tercepat untuk Node.js, Next.js, React, Vue, dan backend/frontend lainnya. 
 
