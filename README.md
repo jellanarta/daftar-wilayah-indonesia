@@ -1,318 +1,438 @@
-Cara mudah mendapatkan data wilayah indonesia
+# daftar-wilayah-indonesia
 
-Berikut ini adalah penjelasan bagaimana cara menggunakan package daftar-wilayah-indonesia di Front-End maupun Back-end hususnya pengguna nodejs
+[![npm version](https://img.shields.io/npm/v/daftar-wilayah-indonesia.svg?style=flat-square)](https://www.npmjs.com/package/daftar-wilayah-indonesia)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-success?style=flat-square)](https://www.npmjs.com/package/daftar-wilayah-indonesia)
 
+Library data wilayah administratif Indonesia terlengkap, terkini, dan tercepat untuk Node.js, Next.js, React, Vue, dan backend/frontend lainnya. 
 
+Mendukung **38 Provinsi** (lengkap dengan seluruh pemekaran Daerah Otonom Baru di Papua), **514 Kabupaten/Kota**, **7.265+ Kecamatan**, dan **83.345+ Desa/Kelurahan** sesuai standar resmi Kementerian Dalam Negeri (Kemendagri) Republik Indonesia.
 
-## Installation
+---
 
-```console
-$ npm install daftar-wilayah-indonesia
+## ✨ Fitur Unggulan
+
+- 🇮🇩 **Data Resmi Terlengkap & Terkini**: 38 Provinsi, 514 Kabupaten/Kota, 7.265+ Kecamatan, 83.345+ Desa/Kelurahan.
+- ⚡ **Super Cepat & Hemat Memori**: Menggunakan *in-memory index Map* (lookup O(1) ~0.005 ms) dan *lazy-loading* untuk desa.
+- 🛡️ **Full TypeScript**: Dilengkapi *type definitions* lengkap (`Provinsi`, `Kabupaten`, `Kecamatan`, `Desa`, `DetailWilayah`).
+- 🔄 **Universal Dual Module**: Mendukung **ESM** (`import`) dan **CommonJS** (`require`) secara native.
+- 🎯 **Fleksibel**: Menerima kode dengan titik (standar Kemendagri `32.04`) maupun tanpa titik (`3204`).
+- 🔍 **Pencarian Cerdas**: Cari wilayah berdasarkan nama (misal: "Bandung", "Praya", "Papua") di semua level.
+- 🧭 **Breadcrumbs Hierarki**: Dapatkan pohon wilayah lengkap (desa ➔ kecamatan ➔ kabupaten ➔ provinsi) dari satu kode saja dengan `getDetailWilayah()`.
+- 🪶 **Zero Runtime Dependencies**: Tanpa dependensi pihak ketiga, ringan dan aman.
+
+---
+
+## 📦 Instalasi
+
+Pilih package manager favorit Anda:
+
+```bash
+# npm
+npm install daftar-wilayah-indonesia
+
+# yarn
+yarn add daftar-wilayah-indonesia
+
+# pnpm
+pnpm add daftar-wilayah-indonesia
+
+# bun
+bun add daftar-wilayah-indonesia
 ```
 
+---
 
+## 🚀 Cara Penggunaan
 
-## Tutorial penggunaan
+### 1. Import Module
 
-untuk menggunakan package ini anda harus mengimport 4 function yang sudah di sediakan yakni function provinsi, kabupaten, kecamatan dan desa
+Mendukung ES Module (TypeScript, Next.js, Vite) maupun CommonJS (Node.js):
 
-
-```js
-
-import { provinsi, kabupaten, kecamatan, desa } from 'daftar-wilayah-indonesia'
-
+```typescript
+// ES Module / TypeScript
+import { provinsi, kabupaten, kecamatan, desa } from 'daftar-wilayah-indonesia';
+// atau import default
+import wilayah from 'daftar-wilayah-indonesia';
 ```
 
-## PENJELASAN
-
-Silahkan simak penjelesan dari masing - masing fungsi yang sudah kita import di atas
-
-
-## Function provinsi()
-
-untuk function provinsi() ini, anda tidak perlu mengirimkan argumen apapun karena akan otomatis menampilkan semua data provinsi yang ada di indonesia. Silahkan perhatikan contoh kode di bawah ini. Saya contohkan penggunaan di NEXTJS
-
-
-```js
-
-import { provinsi, kabupaten, kecamatan, desa } from 'daftar-wilayah-indonesia'
-
-export default function Home() {
-
-  // cara penggunaan
-  const data = provinsi()
-  console.log(data)
-  // cara penggunaan
-
-  return (
-    <div>
-      Hello world
-    </div>
-  )
-}
-
+```javascript
+// CommonJS (Node.js)
+const { provinsi, kabupaten, kecamatan, desa } = require('daftar-wilayah-indonesia');
+// atau
+const wilayah = require('daftar-wilayah-indonesia');
 ```
 
-ketika kalian menjalankan kode di atas, maka nanti akan menampilkan data berupa JSON di console, berikut ini adalah data yang akan dihasilkan
+---
 
-```js
+### 2. Mengambil Seluruh Provinsi (38 Provinsi)
 
+Fungsi `provinsi()` mengembalikan 38 provinsi di Indonesia:
+
+```typescript
+import { provinsi } from 'daftar-wilayah-indonesia';
+
+const dataProvinsi = provinsi();
+console.log(dataProvinsi);
+```
+
+**Contoh Output:**
+```json
 [
-  { kode: '11', nama: 'Aceh' },
-  { kode: '12', nama: 'Sumatera Utara' },
-  { kode: '13', nama: 'Sumatera Barat' },
-  { kode: '14', nama: 'Riau' },
-  { kode: '15', nama: 'Jambi' },
-  { kode: '16', nama: 'Sumatera Selatan' },
-  { kode: '17', nama: 'Bengkulu' },
-  { kode: '18', nama: 'Lampung' },
-  { kode: '19', nama: 'Kepulauan Bangka Belitung' },
-  { kode: '21', nama: 'Kepulauan Riau' },
-  { kode: '31', nama: 'Dki Jakarta' },
-  { kode: '32', nama: 'Jawa Barat' },
-  { kode: '33', nama: 'Jawa Tengah' },
-  { kode: '34', nama: 'Di Yogyakarta' },
-  { kode: '35', nama: 'Jawa Timur' },
-  { kode: '36', nama: 'Banten' },
-  { kode: '51', nama: 'Bali' },
-  { kode: '52', nama: 'Nusa Tenggara Barat' },
-  { kode: '53', nama: 'Nusa Tenggara Timur' },
-  { kode: '61', nama: 'Kalimantan Barat' },
-  { kode: '62', nama: 'Kalimantan Tengah' },
-  { kode: '63', nama: 'Kalimantan Selatan' },
-  { kode: '64', nama: 'Kalimantan Timur' },
-  { kode: '65', nama: 'Kalimantan Utara' },
-  { kode: '71', nama: 'Sulawesi Utara' },
-  { kode: '72', nama: 'Sulawesi Tengah' },
-  { kode: '73', nama: 'Sulawesi Selatan' },
-  { kode: '74', nama: 'Sulawesi Tenggara' },
-  { kode: '75', nama: 'Gorontalo' },
-  { kode: '76', nama: 'Sulawesi Barat' },
-  { kode: '81', nama: 'Maluku' },
-  { kode: '82', nama: 'Maluku Utara' },
-  { kode: '91', nama: 'Papua Barat' },
-  { kode: '94', nama: 'Papua' }
+  { "kode": "11", "nama": "Aceh" },
+  { "kode": "31", "nama": "Daerah Khusus Ibukota Jakarta" },
+  { "kode": "32", "nama": "Jawa Barat" },
+  ...
+  { "kode": "93", "nama": "Papua Selatan" },
+  { "kode": "94", "nama": "Papua Tengah" },
+  { "kode": "95", "nama": "Papua Pegunungan" },
+  { "kode": "96", "nama": "Papua Barat Daya" }
 ]
-
 ```
 
-perhatikan responnya berupa array yang berisi object. 
+---
 
-```js
+### 3. Mengambil Kabupaten / Kota
 
-  { kode: '52', nama: 'Nusa Tenggara Barat' }
+Kirimkan kode provinsi untuk mendapatkan kabupaten/kota di provinsi tersebut. Jika argumen dikosongkan, akan mengembalikan seluruh 514 kabupaten/kota di Indonesia.
 
+```typescript
+import { kabupaten } from 'daftar-wilayah-indonesia';
+
+// Mendapatkan kabupaten/kota di Nusa Tenggara Barat (kode: 52)
+const kabNTB = kabupaten('52');
+console.log(kabNTB);
+
+// Mendapatkan seluruh 514 kabupaten/kota di Indonesia
+const semuaKabupaten = kabupaten();
 ```
 
-nilai dari object di atas bisa kita gunakan untuk mencari kabupaten dari masing - masing provinsi dengan cara mengambil nilai dari key kode yang dalam contoh di atas adalah 52
-
-
-
-## Function kabupaten()
-
-Untuk tahap kabupaten, tentunya kita ingin melihat daftar kabupaten dari provinsi yang kita pilih, sebagai contoh saya ingin melihat daftar kabupaten yang ada di Nusa Tenggara Barat, maka anda perlu mengirimkan kode provinsi yang ingin anda lihat. Untuk mendapatkan kodenya, anda perlu melihatnya di function provinsi() sebagaimana yang telah kita lakukan di atas. 
-
-```js
-
-  { kode: '52', nama: 'Nusa Tenggara Barat' }
-
-```
-
-perhatikan keys kode yang berisi nilai string 52, nilai tersebut akan kita gunakan sebagai argumen di function kabupaten(). Silahkan perhatikan kode berikut ini
-
-```js
-
-import { provinsi, kabupaten, kecamatan, desa } from 'daftar-wilayah-indonesia'
-
-export default function Home() {
-
-  // cara penggunaan
-  const data = kabupaten('52')
-  console.log(data)
-  // cara penggunaan
-
-  return (
-    <div>
-      Hello world
-    </div>
-  )
-}
-
-```
-
-maka respon yang di hasilkan sebagai berikut
-
-```js
-
+**Contoh Output:**
+```json
 [
-  { kode: '5201', kode_provinsi: '52', nama: 'Kabupaten Lombok Barat' },
   {
-    kode: '5202',
-    kode_provinsi: '52',
-    nama: 'Kabupaten Lombok Tengah'
-  },
-  { kode: '5203', kode_provinsi: '52', nama: 'Kabupaten Lombok Timur' },
-  { kode: '5204', kode_provinsi: '52', nama: 'Kabupaten Sumbawa' },
-  { kode: '5205', kode_provinsi: '52', nama: 'Kabupaten Dompu' },
-  { kode: '5206', kode_provinsi: '52', nama: 'Kabupaten Bima' },
-  {
-    kode: '5207',
-    kode_provinsi: '52',
-    nama: 'Kabupaten Sumbawa Barat'
-  },
-  { kode: '5208', kode_provinsi: '52', nama: 'Kabupaten Lombok Utara' },
-  { kode: '5271', kode_provinsi: '52', nama: 'Kota Mataram' },
-  { kode: '5272', kode_provinsi: '52', nama: 'Kota Bima' }
-]
-
-```
-
-sekarang anda lihat responya berbeda dari yang sebelumnya, kali ini objeknya berisi 3 nilai yakni kode, kode_provinsi dan nama. 
-
-```js
-
-  {
-    kode: '5202',
-    kode_provinsi: '52',
-    nama: 'Kabupaten Lombok Tengah'
-  },
-
-```
-
-kita akan menggunakan nilai dari keys kode untuk mencari daftar kecamatan.
-
-PERINGATAN : Jika kalian tidak mengirimkan argumen di function kabupaten() maka nanti respon yang anda dapatkan adalah semua data kabupaten yang ada di indonesia, begitu juga jika anda salah mengirim kode di dalam argumen
-
-
-## function kecamatan()
-
-untuk penggunaan function kecamatan(), kurang lebih sama dengan function kabupaten(), yakni membutuhkan 1 argumen untuk mencari kecamatan yang ada di suatu kabupaten. Silahkan perhatikan contoh berikut ini
-
-```js
-
-import { provinsi, kabupaten, kecamatan, desa } from 'daftar-wilayah-indonesia'
-
-export default function Home() {
-
-  // cara penggunaan
-  const data = kecamatan('5202')
-  console.log(data)
-  // cara penggunaan
-
-  return (
-    <div>
-      Hello world
-    </div>
-  )
-}
-
-```
-
-argumen 5202 yang saya kirim di function kecamatan() adalah untuk mengecek daftar kecamatan yang ada di Kabupaten Lombok Tengah
-
-```js
-
-  {
-    kode: '5202',
-    kode_provinsi: '52',
-    nama: 'Kabupaten Lombok Tengah'
-  },
-
-```
-
-maka nanti respon yang akan anda dapatkan adalah sebagai berikut
-
-```js
-
-[
-  { kode: '5202010', kode_kabupaten: '5202', nama: 'Praya Barat' },
-  { kode: '5202011', kode_kabupaten: '5202', nama: 'Praya Barat Daya' },
-  { kode: '5202020', kode_kabupaten: '5202', nama: 'Pujut' },
-  { kode: '5202030', kode_kabupaten: '5202', nama: 'Praya Timur' },
-  { kode: '5202040', kode_kabupaten: '5202', nama: 'Janapria' },
-  { kode: '5202050', kode_kabupaten: '5202', nama: 'Kopang' },
-  { kode: '5202060', kode_kabupaten: '5202', nama: 'Praya' },
-  { kode: '5202061', kode_kabupaten: '5202', nama: 'Praya Tengah' },
-  { kode: '5202070', kode_kabupaten: '5202', nama: 'Jonggat' },
-  { kode: '5202080', kode_kabupaten: '5202', nama: 'Pringgarata' },
-  { kode: '5202090', kode_kabupaten: '5202', nama: 'Batukliang' },
-  { kode: '5202091', kode_kabupaten: '5202', nama: 'Batukliang Utara' }
-]
-
-```
-
-PERINGATAN : Jika kalian tidak mengirimkan argumen di function kecamatan() maka nanti respon yang anda dapatkan adalah semua data kecamatan yang ada di indonesia, begitu juga jika anda salah mengirim kode di dalam argumen
-
-
-## function desa()
-
-function yang terakhir yakni desa(), penggunaanya mirip dengan function kabupaten() dan kecamatan(), yakni membutuhkan sebuah argumen berupa kode.
-Silahkan perhatikan kode berikut ini
-
-
-```js
-
-import { provinsi, kabupaten, kecamatan, desa } from 'daftar-wilayah-indonesia'
-
-export default function Home() {
-
-  // cara penggunaan
-  const data = desa('5202060')
-  console.log(data)
-  // cara penggunaan
-
-  return (
-    <div>
-      Hello world
-    </div>
-  )
-}
-
-```
-
-kode di atas artinya saya ingin mencari daftar desa yang ada di kecamatan praya
-
-```js
-
-  { kode: '5202060', kode_kabupaten: '5202', nama: 'Praya' }
-
-```
-
-maka respon yang akan dapatkan adalah sebagai berikut
-
-```js
-
-[
-  { kode: '5202060001', kode_kecamatan: '5202060', nama: 'Panjisari' },
-  { kode: '5202060004', kode_kecamatan: '5202060', nama: 'Praya' },
-  { kode: '5202060005', kode_kecamatan: '5202060', nama: 'Prapen' },
-  { kode: '5202060006', kode_kecamatan: '5202060', nama: 'Tiwugalih' },
-  { kode: '5202060009', kode_kecamatan: '5202060', nama: 'Semayan' },
-  { kode: '5202060018', kode_kecamatan: '5202060', nama: 'Bunut Baok' },
-  { kode: '5202060020', kode_kecamatan: '5202060', nama: 'Gonjak' },
-  { kode: '5202060021', kode_kecamatan: '5202060', nama: 'Jago' },
-  { kode: '5202060022', kode_kecamatan: '5202060', nama: 'Aik Mual' },
-  {
-    kode: '5202060023',
-    kode_kecamatan: '5202060',
-    nama: 'Mertak Tombok'
+    "kode": "5201",
+    "kode_kemendagri": "52.01",
+    "kode_provinsi": "52",
+    "nama": "Kabupaten Lombok Barat",
+    "tipe": "Kabupaten"
   },
   {
-    kode: '5202060024',
-    kode_kecamatan: '5202060',
-    nama: 'Montong Terep'
-  },
-  {
-    kode: '5202060025',
-    kode_kecamatan: '5202060',
-    nama: 'Mekar Damai'
+    "kode": "5271",
+    "kode_kemendagri": "52.71",
+    "kode_provinsi": "52",
+    "nama": "Kota Mataram",
+    "tipe": "Kota"
   }
 ]
-
 ```
 
+---
 
-PERINGATAN : Jika kalian tidak mengirimkan argumen di function desa() maka nanti respon yang anda dapatkan adalah semua data desa yang ada di indonesia, begitu juga jika anda salah mengirim kode di dalam argumen
+### 4. Mengambil Kecamatan
 
+Kirimkan kode kabupaten/kota. Menerima kode tanpa titik (`5202`) maupun dengan titik (`52.02`):
 
-Kurang lebih begitulah cara menggunakan package ini, dimana kita sudah mencoba untuk mencari provinsi, kabupaten, kecamatan dan desa yang di dalam contoh ini kita mencari provinsi Nusa Tenggara Barat, lalu kabupaten Lombok Tengah, kemudian Kecamatan Praya
+```typescript
+import { kecamatan } from 'daftar-wilayah-indonesia';
+
+// Kecamatan di Kabupaten Lombok Tengah
+const kecLombokTengah = kecamatan('5202');
+// atau dengan titik: kecamatan('52.02')
+console.log(kecLombokTengah);
+```
+
+**Contoh Output:**
+```json
+[
+  {
+    "kode": "520201",
+    "kode_kemendagri": "52.02.01",
+    "kode_kabupaten": "5202",
+    "kode_provinsi": "52",
+    "nama": "Praya Barat"
+  },
+  {
+    "kode": "520206",
+    "kode_kemendagri": "52.02.06",
+    "kode_kabupaten": "5202",
+    "kode_provinsi": "52",
+    "nama": "Praya"
+  }
+]
+```
+
+---
+
+### 5. Mengambil Desa / Kelurahan
+
+Kirimkan kode kecamatan. Menerima kode tanpa titik (`520206`) maupun dengan titik (`52.02.06`):
+
+```typescript
+import { desa } from 'daftar-wilayah-indonesia';
+
+// Desa di Kecamatan Praya
+const desaPraya = desa('520206');
+// atau dengan titik: desa('52.02.06')
+console.log(desaPraya);
+```
+
+**Contoh Output:**
+```json
+[
+  {
+    "kode": "5202061001",
+    "kode_kemendagri": "52.02.06.1001",
+    "kode_kecamatan": "520206",
+    "kode_kabupaten": "5202",
+    "kode_provinsi": "52",
+    "nama": "Praya"
+  },
+  {
+    "kode": "5202062002",
+    "kode_kemendagri": "52.02.06.2002",
+    "kode_kecamatan": "520206",
+    "kode_kabupaten": "5202",
+    "kode_provinsi": "52",
+    "nama": "Panjisari"
+  }
+]
+```
+
+---
+
+## 🌟 Fitur Baru (v5.0)
+
+### 1. Dapatkan Detail Wilayah & Breadcrumb (`getDetailWilayah`)
+
+Ingin tahu hierarki lengkap dari suatu kode wilayah (misal kode desa)? Gunakan `getDetailWilayah(kode)`:
+
+```typescript
+import { getDetailWilayah } from 'daftar-wilayah-indonesia';
+
+const detail = getDetailWilayah('3204052001'); // atau '32.04.05.2001'
+
+console.log(detail?.tingkat);          // "desa"
+console.log(detail?.nama);             // "Cileunyi Kulon"
+console.log(detail?.kecamatan?.nama);  // "Cileunyi"
+console.log(detail?.kabupaten?.nama);  // "Kabupaten Bandung"
+console.log(detail?.provinsi?.nama);   // "Jawa Barat"
+```
+
+---
+
+### 2. Ambil Satuan Data by Kode (`get*`)
+
+```typescript
+import {
+  getProvinsi,
+  getKabupaten,
+  getKecamatan,
+  getDesa
+} from 'daftar-wilayah-indonesia';
+
+const prov = getProvinsi('32');                    // Jawa Barat
+const kab  = getKabupaten('3204');                 // Kabupaten Bandung (atau '32.04')
+const kec  = getKecamatan('320405');               // Cileunyi (atau '32.04.05')
+const des  = getDesa('3204052001');                // Cileunyi Kulon (atau '32.04.05.2001')
+```
+
+---
+
+### 3. Pencarian Wilayah (`cari*`)
+
+Cari nama wilayah secara case-insensitive:
+
+```typescript
+import {
+  cariProvinsi,
+  cariKabupaten,
+  cariKecamatan,
+  cariDesa,
+  cariWilayah
+} from 'daftar-wilayah-indonesia';
+
+// Cari Provinsi
+const provPapua = cariProvinsi('papua');
+// Hasil: 6 provinsi (Papua, Papua Barat, Papua Selatan, Papua Tengah, Papua Pegunungan, Papua Barat Daya)
+
+// Cari Kabupaten (bisa dibatasi di provinsi tertentu)
+const kabBandung = cariKabupaten('bandung'); 
+// Hasil: Kabupaten Bandung, Kabupaten Bandung Barat, Kota Bandung
+const kabBogorJabar = cariKabupaten('bogor', '32');
+
+// Cari Kecamatan
+const kecPraya = cariKecamatan('praya');
+
+// Cari Desa (default limit: 100)
+const desaCileunyi = cariDesa('cileunyi');
+
+// Cari di semua level (Global Search)
+const hasil = cariWilayah('jogja', { limit: 10 });
+```
+
+---
+
+## 💻 Contoh Integrasi React / Next.js (Cascading Dropdown)
+
+Berikut adalah contoh praktis membuat 4 dropdown bertingkat (Provinsi ➔ Kabupaten ➔ Kecamatan ➔ Desa) di Next.js atau React:
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+import { provinsi, kabupaten, kecamatan, desa } from 'daftar-wilayah-indonesia';
+
+export default function FormAlamat() {
+  const [kodeProv, setKodeProv] = useState('');
+  const [kodeKab, setKodeKab] = useState('');
+  const [kodeKec, setKodeKec] = useState('');
+  const [kodeDesa, setKodeDesa] = useState('');
+
+  const listProvinsi = provinsi();
+  const listKabupaten = kodeProv ? kabupaten(kodeProv) : [];
+  const listKecamatan = kodeKab ? kecamatan(kodeKab) : [];
+  const listDesa = kodeKec ? desa(kodeKec) : [];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: 400 }}>
+      {/* 1. Provinsi */}
+      <select
+        value={kodeProv}
+        onChange={(e) => {
+          setKodeProv(e.target.value);
+          setKodeKab('');
+          setKodeKec('');
+          setKodeDesa('');
+        }}
+      >
+        <option value="">Pilih Provinsi</option>
+        {listProvinsi.map((p) => (
+          <option key={p.kode} value={p.kode}>{p.nama}</option>
+        ))}
+      </select>
+
+      {/* 2. Kabupaten / Kota */}
+      <select
+        value={kodeKab}
+        disabled={!kodeProv}
+        onChange={(e) => {
+          setKodeKab(e.target.value);
+          setKodeKec('');
+          setKodeDesa('');
+        }}
+      >
+        <option value="">Pilih Kabupaten / Kota</option>
+        {listKabupaten.map((k) => (
+          <option key={k.kode} value={k.kode}>{k.nama}</option>
+        ))}
+      </select>
+
+      {/* 3. Kecamatan */}
+      <select
+        value={kodeKec}
+        disabled={!kodeKab}
+        onChange={(e) => {
+          setKodeKec(e.target.value);
+          setKodeDesa('');
+        }}
+      >
+        <option value="">Pilih Kecamatan</option>
+        {listKecamatan.map((kc) => (
+          <option key={kc.kode} value={kc.kode}>{kc.nama}</option>
+        ))}
+      </select>
+
+      {/* 4. Desa / Kelurahan */}
+      <select
+        value={kodeDesa}
+        disabled={!kodeKec}
+        onChange={(e) => setKodeDesa(e.target.value)}
+      >
+        <option value="">Pilih Desa / Kelurahan</option>
+        {listDesa.map((d) => (
+          <option key={d.kode} value={d.kode}>{d.nama}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+```
+
+---
+
+## 📖 API Reference
+
+### Tipe Data (TypeScript)
+
+```typescript
+export interface Provinsi {
+  kode: string;            // Contoh: "11"
+  nama: string;            // Contoh: "Aceh"
+}
+
+export interface Kabupaten {
+  kode: string;            // Contoh: "1101"
+  kode_kemendagri: string; // Contoh: "11.01"
+  kode_provinsi: string;   // Contoh: "11"
+  nama: string;            // Contoh: "Kabupaten Aceh Selatan"
+  tipe: 'Kabupaten' | 'Kota';
+}
+
+export interface Kecamatan {
+  kode: string;            // Contoh: "110101"
+  kode_kemendagri: string; // Contoh: "11.01.01"
+  kode_kabupaten: string;  // Contoh: "1101"
+  kode_provinsi: string;   // Contoh: "11"
+  nama: string;            // Contoh: "Bakongan"
+}
+
+export interface Desa {
+  kode: string;            // Contoh: "1101012001"
+  kode_kemendagri: string; // Contoh: "11.01.01.2001"
+  kode_kecamatan: string;  // Contoh: "110101"
+  kode_kabupaten: string;  // Contoh: "1101"
+  kode_provinsi: string;   // Contoh: "11"
+  nama: string;            // Contoh: "Keude Bakongan"
+}
+```
+
+### Ringkasan Fungsi
+
+| Fungsi | Parameter | Return | Keterangan |
+| :--- | :--- | :--- | :--- |
+| `provinsi()` | - | `Provinsi[]` | Seluruh 38 provinsi di Indonesia |
+| `kabupaten(kodeProv?)` | `string?` | `Kabupaten[]` | Daftar kabupaten per provinsi (atau seluruh 514 kabupaten jika tanpa argumen) |
+| `kecamatan(kodeKab?)` | `string?` | `Kecamatan[]` | Daftar kecamatan per kabupaten (atau seluruh kecamatan jika tanpa argumen) |
+| `desa(kodeKec?)` | `string?` | `Desa[]` | Daftar desa per kecamatan (atau seluruh desa jika tanpa argumen) |
+| `getProvinsi(kode)` | `string` | `Provinsi \| undefined` | Ambil 1 provinsi by kode |
+| `getKabupaten(kode)` | `string` | `Kabupaten \| undefined` | Ambil 1 kabupaten by kode |
+| `getKecamatan(kode)` | `string` | `Kecamatan \| undefined` | Ambil 1 kecamatan by kode |
+| `getDesa(kode)` | `string` | `Desa \| undefined` | Ambil 1 desa by kode |
+| `getDetailWilayah(kode)` | `string` | `DetailWilayah \| null` | Pohon hierarki lengkap dari suatu kode |
+| `cariProvinsi(keyword)` | `string` | `Provinsi[]` | Cari provinsi by nama |
+| `cariKabupaten(keyword, kodeProv?)` | `string, string?` | `Kabupaten[]` | Cari kabupaten by nama |
+| `cariKecamatan(keyword, kodeKab?)` | `string, string?` | `Kecamatan[]` | Cari kecamatan by nama |
+| `cariDesa(keyword, kodeKec?, limit?)` | `string, string?, number?` | `Desa[]` | Cari desa by nama |
+| `cariWilayah(keyword, options?)` | `string, CariWilayahOptions?` | `HasilCariWilayah[]` | Global search di semua tingkat |
+
+---
+
+## 🔄 Pembaruan dari Versi Sebelumnya (Changelog v5.0.0)
+
+- **Update 38 Provinsi**: Ditambahkan 4 provinsi baru di Papua (Papua Selatan, Papua Tengah, Papua Pegunungan, Papua Barat Daya) dan pembaharuan kode Kemendagri terbaru.
+- **Migrasi Full TypeScript**: Dilengkapi deklarasi tipe lengkap (`.d.ts`), autocomplete IDE maksimal.
+- **Dual Support ESM & CJS**: Berjalan mulus di `import` maupun `require`.
+- **Perbaikan Bug Kode Invalid**: Pada versi sebelumnya, jika kode tidak ditemukan akan mengembalikan seluruh data. Pada v5.0, mengembalikan array kosong `[]` sesuai ekspektasi.
+- **Format Titik & Non-Titik**: Parameter menerima `'32.04'` maupun `'3204'` secara otomatis.
+- **Optimasi Performa**: Waktu pencarian dan pemuatan berkurang drastis dengan struktur *indexed Map* dan *lazy loading*.
+- **Fitur Baru**: Ditambahkan `getDetailWilayah()`, fungsi `get*` satuan, dan rangkaian fungsi `cari*`.
+
+---
+
+## 📄 Lisensi
+
+Didistribusikan di bawah lisensi [MIT](LICENSE). Silakan gunakan secara bebas untuk proyek pribadi, open-source, maupun komersial.
+
+Dibuat dengan ❤️ oleh [Jellan Arta](https://github.com/jellanarta).

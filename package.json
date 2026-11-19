@@ -1,10 +1,25 @@
 {
   "name": "daftar-wilayah-indonesia",
-  "version": "4.0.3",
-   "description": "kumpulan daftar wilayah indoneisa. Gunakan package ini untuk menampilkan seluruh daftar wilayah yang ada di indonesia dengan mudah",
-  "main": "index.js",
+  "version": "5.0.0",
+  "description": "Daftar wilayah administratif Indonesia terlengkap dan terkini (38 Provinsi, 514 Kabupaten/Kota, 7.265+ Kecamatan, 83.345+ Desa/Kelurahan) dengan dukungan penuh TypeScript, CJS & ESM.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "node --test test/index.test.js",
+    "prepublishOnly": "npm run build && npm test"
   },
   "repository": {
     "type": "git",
@@ -14,20 +29,29 @@
     "daftar",
     "wilayah",
     "indonesia",
-    "wilayah",
-    "indonesia",
-    "npm",
-    "wilayah",
-    "indonesia",
+    "wilayah-indonesia",
+    "daerah-indonesia",
     "provinsi",
     "kabupaten",
+    "kota",
     "kecamatan",
-    "desa"
+    "desa",
+    "kelurahan",
+    "kemendagri",
+    "kode-wilayah",
+    "typescript",
+    "esm",
+    "cjs"
   ],
   "author": "Jellan Arta",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jellanarta/daftar-wilayah-indonesia/issues"
   },
-  "homepage": "https://github.com/jellanarta/daftar-wilayah-indonesia#readme"
+  "homepage": "https://github.com/jellanarta/daftar-wilayah-indonesia#readme",
+  "devDependencies": {
+    "@types/node": "^24.10.14",
+    "tsup": "^9.0.0",
+    "typescript": "^5.9.3"
+  }
 }
